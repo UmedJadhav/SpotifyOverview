@@ -18,6 +18,7 @@ const cookieParser = require('cookie-parser');
 const queryString = require('querystring');
 const history = require('connect-history-api-fallback');
 const helmet = require('helmet');
+const { Buffer } = require('buffer');
 const cookie_key = 'spotify_auth_state';
 
 const generateRandomString = (length) => {
@@ -93,7 +94,7 @@ if(cluster.isMaster){
             res.redirect(`/#${queryString.stringify({ error: 'state_mismatch '})}`);
         }else{
             res.clearCookie(cookie_state);
-            const authOptions = {
+            const auth_options = {
                 url: 'https://accounts.spotify.com/api/token',
                 form: {
                     code: code,
@@ -106,7 +107,7 @@ if(cluster.isMaster){
                 json: true,
             };
 
-            request.post(authOptions, (error, response, body)=>{
+            request.post(auth_options, (error, response, body)=>{
                 if(!error && response.statusCode === 200){
                     const access_token = body.access_token;
                     const refresh_token = body.refresh_token;
@@ -123,6 +124,33 @@ if(cluster.isMaster){
                 }
             });
         }
+    });
+
+    app.get('/refresh_token', (req, res) => {
+        const refresh_token = req.query.refresh_token;
+        const auth_options = {
+            url: 'https://accounts.spotify.com/api/token',
+            headers: {
+                Authorization: `Basic ${new Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64')}`
+            },
+            form: {
+                grant_type: 'refresh_token',
+                refresh_token
+            },
+            json: true
+        };
+
+        request.post(auth_options, (error, response, body) => {
+            if(!error && response.statusCode == 200){
+                const access_token = body.access_token;
+                res.send({ access_token });
+            }
+        });
+    });
+
+    //Forward the rest of requests to React
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, path.join('../spotify_overview_client','public/index.html')));
     });
 
     app.listen(PORT, () => {
