@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_ID = process.env.CLIENT_ID; 
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const REDIRECT_URL = process.env.REDIRECT_URL
 const FRONTEND_URL = process.env.FRONTEND_URL;
@@ -91,7 +91,7 @@ if(cluster.isMaster){
         const cookie_state = req.cookies ? req.cookies[cookie_key] : null ;
 
         if(state === null || state !== cookie_state){
-            res.redirect(`/#${queryString.stringify({ error: 'state_mismatch '})}`);
+            res.redirect(`/#${queryString.stringify({ error: 'state_mismatch'})}`);
         }else{
             res.clearCookie(cookie_state);
             const auth_options = {
@@ -102,7 +102,7 @@ if(cluster.isMaster){
                     grant_type: 'authorization_code'
                 },
             headers:{
-                Authorization: `Basic ${new Buffer.from(`${CLIENT_ID}: ${CLIENT_SECRET}`).toString('base64')}`,
+                Authorization: `Basic ${new Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64')}`,
                 },
                 json: true,
             };

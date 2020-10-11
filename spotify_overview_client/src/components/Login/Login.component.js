@@ -7,7 +7,7 @@ import Main from '../../styles/Main';
 const { colors, fontSizes } = theme;
 
 // TODO: Add the production link
-const LOGIN_URL = process.env.NODE_ENV !== 'production' ? 'http://localhost:8888/login' : ''
+const LOGIN_URL = process.env.NODE_ENV !== 'production' ? 'http://localhost:8080/login' : ''
 
 const Login = styled(Main)`
     ${mixins.flexCenter};
