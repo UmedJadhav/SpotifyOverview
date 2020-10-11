@@ -83,8 +83,50 @@ if(cluster.isMaster){
         )
     });
     
+    app.get('/callback', (req, res) => {
+        // Handles refresh and access token flow
+        const code = req.query.code || null;
+        const state = req.query.state || null;
+        const cookie_state = req.cookies ? req.cookies[cookie_key] : null ;
+
+        if(state === null || state !== cookie_state){
+            res.redirect(`/#${queryString.stringify({ error: 'state_mismatch '})}`);
+        }else{
+            res.clearCookie(cookie_state);
+            const authOptions = {
+                url: 'https://accounts.spotify.com/api/token',
+                form: {
+                    code: code,
+                    redirect_uri: REDIRECT_URL,
+                    grant_type: 'authorization_code'
+                },
+            headers:{
+                Authorization: `Basic ${new Buffer.from(`${CLIENT_ID}: ${CLIENT_SECRET}`).toString('base64')}`,
+                },
+                json: true,
+            };
+
+            request.post(authOptions, (error, response, body)=>{
+                if(!error && response.statusCode === 200){
+                    const access_token = body.access_token;
+                    const refresh_token = body.refresh_token;
+
+                    // passing the token to FE to make request from FE
+                    res.redirect(
+                        `${FRONTEND_URL}/#${queryString.stringify({
+                            access_token,
+                            refresh_token
+                        })}`
+                    );
+                }else{
+                    res.redirect(`/#${queryString.stringify({error: 'invalid_token'})}`);
+                }
+            });
+        }
+    });
+
     app.listen(PORT, () => {
         console.warn(`Node cluster worker ${process.pid}: listening on port ${PORT}`);
-    })
+    });
 }
 
