@@ -128,7 +128,7 @@ class Playlists extends Component {
             {playlists ? (
               playlists.items.map(({ id, images, name, tracks }, i) => (
                 <Playlist key={i}>
-                  <PlaylistCover to={id}>
+                  <PlaylistCover to={`/playlists/${id}`}>
                     {images.length ? (
                       <PlaylistImage src={images[0].url} alt="Album Art" />
                     ) : (
@@ -143,7 +143,7 @@ class Playlists extends Component {
                     </PlaylistMask>
                   </PlaylistCover>
                   <div>
-                    <PlaylistName to={id}>{name}</PlaylistName>
+                    <PlaylistName to={`/playlists/${id}`}>{name}</PlaylistName>
                     <TotalTracks>{tracks.total} Tracks</TotalTracks>
                   </div>
                 </Playlist>

@@ -16,7 +16,7 @@ const rythm = keyframes`
     from{
         height: 10px;
     }
-    to{
+    to {
         height: 100%;
     }
 `;
@@ -42,6 +42,7 @@ const Bar = styled.div`
     margin: 0 2px;
     background-color: ${colors.grey};
     animation-name: ${rythm};
+    animation-duration: 400ms;
     animation-play-state: running;
     animation-direction: alternate;
     animation-timing-function: linear;

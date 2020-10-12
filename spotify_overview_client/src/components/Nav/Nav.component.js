@@ -162,25 +162,25 @@ const Nav = () => (
                 </NavLink>
             </MenuItem>
             <MenuItem>
-                <NavLink to="artists">
+                <NavLink to="/artists">
                     <IconMicrophone />
                     <div>Top Artists</div>
                 </NavLink>
             </MenuItem>
             <MenuItem>
-                <NavLink to="tracks">
+                <NavLink to="/tracks">
                   <IconMusic />
                   <div>Top Tracks</div>
                 </NavLink>
             </MenuItem>
             <MenuItem>
-                <NavLink to="recent">
+                <NavLink to="/recent">
                   <IconTime />
                   <div>Recent</div>
                 </NavLink>
             </MenuItem>
             <MenuItem>
-                <NavLink to="playlists">
+                <NavLink to="/playlists">
                   <IconPlaylist />
                   <div>Playlists</div>
                 </NavLink>

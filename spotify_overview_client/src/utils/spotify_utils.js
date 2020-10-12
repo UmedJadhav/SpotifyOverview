@@ -103,4 +103,7 @@ export const get_user_info = () => {
 export const get_Recently_Played = () => axios.get('https://api.spotify.com/v1/me/player/recently-played', { headers });
 ;
 
+export const get_Playlist = playlistId =>
+  axios.get(`https://api.spotify.com/v1/playlists/${playlistId}`, { headers });
+
 
