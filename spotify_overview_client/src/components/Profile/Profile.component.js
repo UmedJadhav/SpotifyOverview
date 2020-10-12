@@ -8,6 +8,7 @@ import media from '../../styles/media';
 import Nav from '../Nav/Nav.component';
 import User from '../User/User.component';
 import ScrolltoTop from '../ScrollToTop/ScrollToTop.component';
+import RecentlyPlayed from '../Recently_Played/Recently_Played.components';
 
 const SiteWrapper = styled.div`
 `;
@@ -16,7 +17,8 @@ const Profile = () => (
     <Router >
         <ScrolltoTop >
             <Nav/>
-            <Route path='/' component={User}/>
+            <Route exact path='/' component={User}/>
+            <Route exact path='/recent' component={RecentlyPlayed}/>
         </ScrolltoTop>
     </Router>
 );
