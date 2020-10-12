@@ -106,4 +106,10 @@ export const get_Recently_Played = () => axios.get('https://api.spotify.com/v1/m
 export const get_Playlist = playlistId =>
   axios.get(`https://api.spotify.com/v1/playlists/${playlistId}`, { headers });
 
+const get_track_ids = tracks => tracks.map(({ track }) => track.id).join(',');
+
+export const get_Audio_Features_For_Tracks = tracks => {
+    const ids = get_track_ids(tracks);
+    return axios.get(`https://api.spotify.com/v1/audio-features?ids=${ids}`, { headers });
+};
 

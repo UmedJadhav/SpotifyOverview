@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import {catch_errors} from '../../utils/utils';
-import { get_Playlist  } from '../../utils/spotify_utils';
+import { get_Playlist, get_Audio_Features_For_Tracks  } from '../../utils/spotify_utils';
 
 
 import Loader from '../Loader/Loader.component';
 import TrackItem from '../TrackItem/TrackItem.component';
+import FeatureChart from '../FeatureChart/FeatureChart.component';
 
 import styled from 'styled-components/macro';
 import theme from '../../styles/theme';
@@ -84,23 +85,33 @@ class Playlist extends Component {
     playlistId: PropTypes.string,
   };
 
+  
   state = {
     playlist: null,
     tracks: null,
+    audioFeatures: null,
+    playlistId: this.props.match.params.playListId
   };
 
   componentDidMount() {
-    catch_errors(this.getData());
-  }
-
-  async getData() {
-    const { playlistId } = this.props;
-    const { data } = await get_Playlist(playlistId);
+      catch_errors(this.getData());
+    }
+    
+    async getData() {
+    // const { playlistId } = this.props.match.params;
+    console.log('PlayListId', this.state.playlistId);
+    const { data } = await get_Playlist(this.state.playlistId);
     this.setState({ playlist: data });
+
+    if (data) {
+      const { playlist } = this.state;
+      const { data } = await get_Audio_Features_For_Tracks(playlist.tracks.items);
+      this.setState({ audioFeatures: data });
+    }
   }
 
   render() {
-    const { playlist } = this.state;
+    const { playlist, audioFeatures } = this.state;
 
     return (
       <React.Fragment>
@@ -128,6 +139,9 @@ class Playlist extends Component {
 
                 <RecButton to={`/recommendations/${playlist.id}`}>Get Recommendations</RecButton>
 
+                {audioFeatures && (
+                  <FeatureChart features={audioFeatures.audio_features} type="horizontalBar" />
+                )}
               </Left>
               <Right>
                 <ul>
@@ -147,4 +161,4 @@ class Playlist extends Component {
   }
 }
 
-export default Playlist;
+export default withRouter(Playlist);
