@@ -8,3 +8,4 @@ import IconUser from '../icons/user.svg';
 import IconInfo from '../icons/info.svg.js';
 
 import Loader from '../Loader/Loader.component.js';
+import TrackItem from '../TrackItem/TrackItem.component.js'

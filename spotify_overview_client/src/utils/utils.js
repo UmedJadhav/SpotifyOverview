@@ -19,3 +19,11 @@ export const catch_errors = fn => {
     };
 };
 
+export const format_duration = millis => {
+    const minutes = Math.floor(millis/ 60_000);
+    const seconds = ((millis % 60_000)/1_000).toFixed(0);
+    return `${minutes}:${seconds < 10 ? '0': ''}${seconds}`;
+}
+
+
+
