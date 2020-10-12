@@ -10,6 +10,7 @@ import User from '../User/User.component';
 import ScrolltoTop from '../ScrollToTop/ScrollToTop.component';
 import RecentlyPlayed from '../Recently_Played/Recently_Played.components';
 import TopArtists from '../TopArtist/TopArtist.component';
+import Playlists from '../Playlists/Playlists.components';
 
 const SiteWrapper = styled.div`
 `;
@@ -21,6 +22,7 @@ const Profile = () => (
             <Route exact path='/' component={User}/>
             <Route exact path='/recent' component={RecentlyPlayed}/>
             <Route exact path='/artists' component={TopArtists}/>
+            <Route exact path='/playlists' component={Playlists}/>
         </ScrolltoTop>
     </Router>
 );
