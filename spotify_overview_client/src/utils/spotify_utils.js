@@ -67,3 +67,36 @@ export const logout = () => {
     window.location.reload();
 }
 
+const headers = {
+    Authorization: `Bearer ${token}`,
+    'Content-Type': 'application/json'
+}
+
+export const get_user = () => axios.get('https://api.spotify.com/v1/me', { headers });
+
+export const get_following = () => axios.get('https://api.spotify.com/v1/me/following?type=artist', { headers });
+
+export const get_playlists = () => axios.get('https://api.spotify.com/v1/me/playlists', { headers });
+
+
+export const get_top_artists = (term) => axios.get(`https://api.spotify.com/v1/me/top/artists?limit=50&time_range=${term}`, { headers });
+
+export const get_top_tracks = (term) => axios.get(`https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=${term}`, { headers });
+
+
+export const get_user_info = () => {
+    return axios.all(
+        [get_user(), get_following(), get_playlists(), get_top_artists('long_term'), get_top_tracks('long_term')]
+    ).then(
+        axios.spread((user, followed_artists, playlists, top_artists, top_tracks) => {
+            return {
+                user: user.data,
+                followed_artists: followed_artists.data,
+                playlists: playlists.data,
+                top_artists: top_artists.data,
+                top_tracks: top_tracks.data
+            };
+        })
+    );
+};
+

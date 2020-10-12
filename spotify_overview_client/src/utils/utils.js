@@ -9,3 +9,13 @@ export const get_hash_params = () => {
     return hash_params;
 }
 
+// HOF for async error handling 
+export const catch_errors = fn => {
+    return (...args)=>{
+        return fn(...args)
+        .catch(err => {
+            console.error(err);
+        });
+    };
+};
+
