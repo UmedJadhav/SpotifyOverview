@@ -9,6 +9,7 @@ import Nav from '../Nav/Nav.component';
 import User from '../User/User.component';
 import ScrolltoTop from '../ScrollToTop/ScrollToTop.component';
 import RecentlyPlayed from '../Recently_Played/Recently_Played.components';
+import TopArtists from '../TopArtist/TopArtist.component';
 
 const SiteWrapper = styled.div`
 `;
@@ -19,6 +20,7 @@ const Profile = () => (
             <Nav/>
             <Route exact path='/' component={User}/>
             <Route exact path='/recent' component={RecentlyPlayed}/>
+            <Route exact path='/artists' component={TopArtists}/>
         </ScrolltoTop>
     </Router>
 );

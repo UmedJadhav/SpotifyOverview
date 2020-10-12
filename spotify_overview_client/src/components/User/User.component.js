@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link }  from 'react-router-dom';
 
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import theme from '../../styles/theme';
 import mixins from '../../styles/mixins';
 import media from '../../styles/media';

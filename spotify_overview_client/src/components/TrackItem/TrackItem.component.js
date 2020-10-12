@@ -22,7 +22,7 @@ const TrackRight = styled.span``;
 const TrackArtwork = styled.div`
   display: inline-block;
   position: relative;
-  width: 50px;
+  width: 75px;
   min-width: 50px;
   margin-right: ${spacing.base};
 `;
