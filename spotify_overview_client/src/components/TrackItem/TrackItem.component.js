@@ -9,7 +9,7 @@ import media from '../../styles/media';
 
 import { format_duration } from '../../utils/utils';
 
-import { IconInfo } from '../icons/info.svg';
+import  IconInfo  from '../icons/info.svg';
 
 const { colors, fontSizes, spacing } = theme;
 
@@ -116,7 +116,7 @@ const TrackItem = ({ track }) => (
           )}
         </TrackLeft>
         <TrackRight>
-          {track.duration_ms && <TrackDuration>{formatDuration(track.duration_ms)}</TrackDuration>}
+          {track.duration_ms && <TrackDuration>{format_duration(track.duration_ms)}</TrackDuration>}
         </TrackRight>
       </TrackMeta>
     </TrackContainer>
