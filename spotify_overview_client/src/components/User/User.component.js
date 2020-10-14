@@ -25,8 +25,8 @@ const Header = styled.header`
 `;
 
 const Avatar = styled.div`
-    width: 150px;
-    height: 150px;
+    width: 250px;
+    height: 200px;
     img{
         border-radius: 100%;
     }
