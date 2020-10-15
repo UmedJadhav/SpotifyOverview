@@ -98,7 +98,6 @@ class Playlist extends Component {
     }
     
     async getData() {
-    // const { playlistId } = this.props.match.params;
     console.log('PlayListId', this.state.playlistId);
     const { data } = await get_Playlist(this.state.playlistId);
     this.setState({ playlist: data });

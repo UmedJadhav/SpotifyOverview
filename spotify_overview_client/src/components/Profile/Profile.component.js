@@ -13,22 +13,25 @@ import TopArtists from '../TopArtist/TopArtist.component';
 import Playlists from '../Playlists/Playlists.components';
 import Playlist from '../Playlist/Playlist.components';
 import TopTracks from '../TopTracks/TopTracks.component';
-
+import Recommendations from '../Recommendations/Recommendations.component'
 
 const SiteWrapper = styled.div`
 `;
 
 const Profile = () => (
     <Router >
-        <ScrolltoTop >
-            <Nav/>
-            <Route exact path='/' component={User}/>
-            <Route exact path='/recent' component={RecentlyPlayed}/>
-            <Route exact path='/artists' component={TopArtists}/>
-            <Route exact path='/playlists/' component={Playlists}/>
-            <Route exact path='/playlists/:playListId' component={Playlist}/>
-            <Route exact path='/tracks' component={TopTracks}/>
-        </ScrolltoTop>
+        <SiteWrapper>
+            <ScrolltoTop >
+                <Nav/>
+                <Route exact path='/' component={User}/>
+                <Route exact path='/recent' component={RecentlyPlayed}/>
+                <Route exact path='/artists' component={TopArtists}/>
+                <Route exact path='/playlists/' component={Playlists}/>
+                <Route exact path='/playlists/:playListId' component=   {Playlist}/>
+                <Route exact path='/tracks' component={TopTracks}/>
+                <Route exact path='/recommendations/:playListId' component=   {Recommendations}/>
+            </ScrolltoTop>
+        </SiteWrapper>
     </Router>
 );
 

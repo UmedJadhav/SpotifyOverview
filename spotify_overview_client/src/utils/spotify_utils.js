@@ -113,3 +113,38 @@ export const get_Audio_Features_For_Tracks = tracks => {
     return axios.get(`https://api.spotify.com/v1/audio-features?ids=${ids}`, { headers });
 };
 
+// https://developer.spotify.com/documentation/web-api/reference/browse/get-recommendations/
+export const get_recommendations_For_Tracks = tracks => {
+    const shuffledTracks = tracks.sort(() => 0.5 - Math.random());
+    const seed_tracks = get_track_ids(shuffledTracks.slice(0, 5));
+    const seed_artists = '';
+    const seed_genres = '';
+
+    console.log('Umed ' ,seed_tracks);
+
+    return axios.get(
+        `https://api.spotify.com/v1/recommendations?seed_tracks=${seed_tracks}&seed_artists=${seed_artists}&seed_genres=${seed_genres}`, { headers }
+    );
+};
+
+export const createPlaylist = (userID, name) => {
+    const url = `https://api.spotify.com/v1/users/${userID}/playlists`;
+    const data = JSON.stringify({ name });
+    return axios({ method: 'post', url, headers, data });
+};
+
+export const add_tracks_to_playlist = (playlistID, urls) => {
+    const url = `https://api.spotify.com/v1/playlists/${playlistID}/tracks?uris=${urls}`
+    return axios({ method: 'post', url, headers });
+};
+
+export const follow_playlist = playlistId => {
+    const url = `https://api.spotify.com/v1/playlists/${playlistId}/followers`;
+    return axios({ method: 'put', url, headers }); 
+}
+
+export const does_user_follow_playlist = (playlistId, userID) =>   axios.get(`https://api.spotify.com/v1/playlists/${playlistId}/followers/contains?ids=${userID}`, {
+    headers,
+  });
+
+
