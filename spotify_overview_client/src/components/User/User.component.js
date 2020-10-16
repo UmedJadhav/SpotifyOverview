@@ -197,13 +197,14 @@ class User extends Component {
     user: null,
     followed_Artists: null,
     playlists: null,
-    top_Artists: null,
-    top_Tracks: null,
+    top_artists: null,
+    top_tracks: null,
   };
 
   async get_data(){
-    const { user, followed_Artists, playlists, top_Artists, top_Tracks } = await get_user_info();
-    this.setState({ user, followed_Artists, playlists, top_Artists, top_Tracks });
+    const { user, followed_Artists, playlists, top_artists, top_tracks } = await get_user_info();
+    console.log(top_artists, top_tracks)
+    this.setState({ user, followed_Artists, playlists, top_artists, top_tracks });
   }
 
   componentDidMount(){
@@ -211,7 +212,7 @@ class User extends Component {
   }
 
   render() {
-    const { user, followedArtists, playlists, topArtists, topTracks } = this.state;
+    const { user, followedArtists, playlists, top_artists, top_tracks } = this.state;
     const totalPlaylists = playlists ? playlists.total : 0;
 
     return (
@@ -261,9 +262,9 @@ class User extends Component {
                   <MoreButton to="/artists">See More</MoreButton>
                 </TracklistHeading>
                 <div>
-                  {topArtists ? (
+                  {top_artists ? (
                     <ul>
-                      {topArtists.items.slice(0, 10).map((artist, i) => (
+                      {top_artists.items.slice(0, 10).map((artist, i) => (
                         <Artist key={i}>
                           <ArtistArtwork to={`/artist/${artist.id}`}>
                             {artist.images.length && (
@@ -291,8 +292,8 @@ class User extends Component {
                   <MoreButton to="/tracks">See More</MoreButton>
                 </TracklistHeading>
                 <ul>
-                  {topTracks ? (
-                    topTracks.items
+                  {top_tracks ? (
+                    top_tracks.items
                       .slice(0, 10)
                       .map((track, i) => <TrackItem track={track} key={i} />)
                   ) : (

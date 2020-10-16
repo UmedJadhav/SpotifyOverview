@@ -89,13 +89,15 @@ export const get_user_info = () => {
         [get_user(), get_following(), get_playlists(), get_top_artists('long_term'), get_top_tracks('long_term')]
     ).then(
         axios.spread((user, followed_artists, playlists, top_artists, top_tracks) => {
-            return {
+            const a = {
                 user: user.data,
                 followed_artists: followed_artists.data,
                 playlists: playlists.data,
                 top_artists: top_artists.data,
                 top_tracks: top_tracks.data
             };
+            console.log(a);
+            return a;
         })
     );
 };

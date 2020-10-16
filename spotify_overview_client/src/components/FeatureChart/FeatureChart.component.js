@@ -4,7 +4,7 @@ import Chart from 'chart.js';
 
 import styled from 'styled-components/macro';
 import theme from '../../styles/theme';
-const { colors, fonts } = theme;
+const { fonts } = theme;
 
 const properties = [
   'acousticness',
