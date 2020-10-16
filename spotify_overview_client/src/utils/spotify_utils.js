@@ -163,3 +163,8 @@ export const get_track_info = trackId => {
             )
 };
 
+export const get_artists = artistId => axios.get(`https://api.spotify.com/v1/artists/${artistId}`, { headers });
+
+export const follow_artist = artistId => axios.post(`https://api.spotify.com/v1/me/following?type=artist&ids=${artistId}`,headers)
+
+export const does_user_follow_artist = artistId => axios.get(`https://api.spotify.com/v1/me/following/contains?type=artist&ids=${artistId}`, { headers });

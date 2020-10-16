@@ -188,7 +188,7 @@ const Nav = () => (
         </Menu>
         <Github>
             <a
-                href='#' // TODO: Fill the link to the github repo
+                href='https://github.com/UmedJadhav/SpotifyOverview'
                 target='_blank'
                 rel='noopener noreferrer'>
             <IconGithub/>

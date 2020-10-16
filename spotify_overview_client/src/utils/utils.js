@@ -72,5 +72,7 @@ export const parse_pitch_class = note => {
     return key;
 }
 
+export const format_with_commas = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
 
 
