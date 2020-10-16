@@ -120,8 +120,6 @@ export const get_recommendations_For_Tracks = tracks => {
     const seed_artists = '';
     const seed_genres = '';
 
-    console.log('Umed ' ,seed_tracks);
-
     return axios.get(
         `https://api.spotify.com/v1/recommendations?seed_tracks=${seed_tracks}&seed_artists=${seed_artists}&seed_genres=${seed_genres}`, { headers }
     );
@@ -147,4 +145,21 @@ export const does_user_follow_playlist = (playlistId, userID) =>   axios.get(`ht
     headers,
   });
 
+const get_track = trackId => axios.get(`https://api.spotify.com/v1/tracks/${trackId}`, { headers }); 
+
+const get_track_Audio_Analysis = trackId => axios.get(`https://api.spotify.com/v1/audio-analysis/${trackId}`, { headers });
+
+const get_track_Audio_Features = trackId => axios.get(`https://api.spotify.com/v1/audio-features/${trackId}`, { headers });
+
+export const get_track_info = trackId => {
+    return axios.all([ get_track(trackId), get_track_Audio_Analysis(trackId), get_track_Audio_Features(trackId) ])
+            .then(axios.spread((track, audioAnalysis, audioFeatures) => {
+                return {
+                        track: track.data,
+                        audioAnalysis: audioAnalysis.data,
+                        audioFeatures: audioFeatures.data
+                        }
+                    })
+            )
+};
 

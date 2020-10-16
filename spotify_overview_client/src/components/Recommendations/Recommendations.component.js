@@ -125,7 +125,7 @@ class Recommendations extends Component {
                 Open in Spotify
               </OpenButton>
             ) : (
-              <SaveButton onClick={catch_errors(this.create_playlist)}>Save to Spotify</SaveButton>
+              <SaveButton onClick={catch_errors(this.createPlaylist)}>Save to Spotify</SaveButton>
             )}
           </PlaylistHeading>
         )}
