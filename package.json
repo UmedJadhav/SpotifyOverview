@@ -1,7 +1,7 @@
 {
   "name": "SpotifyOverview",
   "version": "1.0.0",
-  "description": "",
+  "description": "A webApp that displays your spotify stats",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,7 +13,10 @@
   },
   "keywords": [],
   "author": "Umed Jadhav <umedj.formal@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
+  "engines": {
+    "node": "10.13.0"
+  },
   "dependencies": {
     "connect-history-api-fallback": "^1.6.0",
     "cookie-parser": "^1.4.5",
