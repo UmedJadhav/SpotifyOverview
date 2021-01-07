@@ -8,7 +8,7 @@
     "client": "cd spotify_overview_client && npm run start",
     "dev": "concurrently --kill-others-on-fail \"npm server\"\"npm client",
     "server": "cd spotify_overview_backend && node index",
-    "start": "npm server",
+    "start": "npm run server",
     "heroku-postbuild": "cd spotify_overview_client/ && npm install --production && npm build"
   },
   "keywords": [],
