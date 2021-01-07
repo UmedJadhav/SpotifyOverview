@@ -7,8 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "cd spotify_overview_client && npm run start",
     "dev": "concurrently --kill-others-on-fail \"npm server\"\"npm client",
-    "server": "cd spotify_overview_backend && node index",
-    "start": "npm run server",
+    "start": "cd spotify_overview_backend && node index",
     "heroku-postbuild": "cd spotify_overview_client/ && npm install --production && npm build"
   },
   "keywords": [],
