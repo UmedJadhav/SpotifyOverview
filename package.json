@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "client": "cd spotify_overview_client && npm run start",
-    "dev": "concurrently --kill-others-on-fail \"npm server\"\"npm client",
+    "client": "cd spotify_overview_client && yarn start",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\"\"yarn client",
     "start": "cd spotify_overview_backend && node index",
-    "heroku-postbuild": "cd spotify_overview_client/ && npm install --production && npm build"
+    "heroku-postbuild": "cd spotify_overview_client/ && yarn && yarn install --production && yarn build"
   },
   "keywords": [],
   "author": "Umed Jadhav <umedj.formal@gmail.com>",
