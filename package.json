@@ -8,7 +8,8 @@
     "client": "cd spotify_overview_client && npm run start",
     "dev": "concurrently --kill-others-on-fail \"npm server\"\"npm client",
     "server": "cd spotify_overview_backend && node index",
-    "start": "node server"
+    "start": "node server",
+    "heroku-postbuild": "cd spotify_overview_client/ && yarn && yarn install --production && yarn build"
   },
   "keywords": [],
   "author": "Umed Jadhav <umedj.formal@gmail.com>",
